@@ -1,6 +1,8 @@
 ﻿using CRUD_.NET5.Data;
 using CRUD_.NET5.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 //using Microsoft.AspNetCore.Http.HttpContext.Current.Session;
@@ -9,16 +11,16 @@ namespace CRUD_.NET5.Controllers
 {
     public class AccountController : Controller 
     {
-        
+        private readonly ApplicationDbContext _db;
+        public AccountController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
 
         //Get: Account
         public IActionResult Index()
         {
-            using(ApplicationDbContext db = new ApplicationDbContext())
-            {
-                return View(db.userAccount.ToList());
-            }
-            return View();
+            return View(_db.userAccount.ToList());
         }
 
         //Get: Register
@@ -33,13 +35,11 @@ namespace CRUD_.NET5.Controllers
         {
             if (ModelState.IsValid)
             {
-                using(ApplicationDbContext db = new ApplicationDbContext())
-                {
-                    db.userAccount.Add(account);
-                    db.SaveChanges();
-                }
+                _db.userAccount.Add(account);
+                _db.SaveChanges();
+
                 ModelState.Clear();
-                ViewBag.Message = account.FirstName + " " + account.LastName + "Successfully Registered";
+                ViewBag.Message = "Successfully Registered";
                 
             }
             return View();
@@ -53,34 +53,39 @@ namespace CRUD_.NET5.Controllers
 
         [HttpPost]
         public ActionResult Login(UserAccount user)
-        {
-            using(ApplicationDbContext db = new ApplicationDbContext())
+         {
+            var usr = _db.userAccount.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
+            if (usr != null)
             {
-                var usr = db.userAccount.Single(u => u.Email == user.Email && u.Password == user.Password);
-                if(usr != null)
-                {
-                    Session["UserId"] = usr.UserId.ToString();
-                    Session["Email"] = usr.Email.ToString();
-                    return RedirectToAction("LoggedIn");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Email or Password is wrong");
-                }
+                
+                HttpContext.Session.SetString("UserId", usr.UserId.ToString());
+                HttpContext.Session.SetString("Email", usr.Email.ToString());
+                return View("../Expense/Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Email or Password is wrong");
             }
             return View();
         }
 
         public ActionResult LoggedIn()
         {
-            if (Session["UserId"] != null)
+            if(HttpContext.Session.GetString("UserId") != null)
             {
+                ViewBag.Email = HttpContext.Session.GetString("Email");
                 return View();
             }
             else
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
         }
     }
 }

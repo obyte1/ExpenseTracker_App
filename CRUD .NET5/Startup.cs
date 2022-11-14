@@ -27,6 +27,7 @@ namespace CRUD_.NET5
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefualtConnection")));
             services.AddControllersWithViews();
+            services.AddSession(); //added code
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,13 +48,14 @@ namespace CRUD_.NET5
 
             app.UseRouting();
 
+            
             app.UseAuthorization();
-
+            app.UseSession(); //added code
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

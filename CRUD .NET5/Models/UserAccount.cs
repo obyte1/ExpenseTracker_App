@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUD_.NET5.Models
 {
@@ -21,5 +22,6 @@ namespace CRUD_.NET5.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
+        
     }
 }

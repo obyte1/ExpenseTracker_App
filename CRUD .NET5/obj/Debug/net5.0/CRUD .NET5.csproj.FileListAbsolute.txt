@@ -148,3 +148,5 @@ C:\Users\DEV KACHI\source\repos\CRUD .NET5\CRUD .NET5\obj\Debug\net5.0\Razor\Vie
 C:\Users\DEV KACHI\source\repos\CRUD .NET5\CRUD .NET5\obj\Debug\net5.0\Razor\Views\Expense\Index.cshtml.g.cs
 C:\Users\DEV KACHI\source\repos\CRUD .NET5\CRUD .NET5\obj\Debug\net5.0\Razor\Views\Expense\Delete.cshtml.g.cs
 C:\Users\DEV KACHI\source\repos\CRUD .NET5\CRUD .NET5\obj\Debug\net5.0\Razor\Views\Expense\Update.cshtml.g.cs
+C:\Users\DEV KACHI\source\repos\CRUD .NET5\CRUD .NET5\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\DEV KACHI\source\repos\CRUD .NET5\CRUD .NET5\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
