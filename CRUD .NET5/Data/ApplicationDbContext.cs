@@ -16,5 +16,6 @@ namespace CRUD_.NET5.Data
 
         public DbSet<UserAccount> userAccount { get; set; }
         public DbSet<ReservationModel> reservationModel { get; set; }
+        public DbSet<CRUD_.NET5.Models.ReservationViewModel> ReservationViewModel { get; set; }
     }
 }

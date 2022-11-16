@@ -1,0 +1,111 @@
+﻿@model CRUD_.NET5.Models.ReservationViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Reservation</h1>
+
+<h4></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Room" class="control-label"></label>                
+                <select class="form-control" aria-label="Default select example" asp-for="Room">
+                <option selected>Select Number of Rooms</option>
+                    <option>Room</option>
+                    <option>Standard Double Room</option>
+                    <option>Standard Family Room</option>
+                    <option>Garden Family Room</option>
+                    <option>Deluxe Double Room</option>
+                    <option>Executive Junior Suite</option>
+                    <option>Maisonette</option>         
+                </select>
+                <span asp-validation-for="Room" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfPeople" class="control-label"></label>
+                <select class="form-control" aria-label="Default select example" asp-for="NumberOfPeople">
+                <option selected>Select Number of People</option>
+                    <option>Persons</option>
+                    <option>1</option>
+                    <option>2 </option>
+                    <option>3 </option>
+                    <option>4 </option>
+                    <option>5 </option>
+                    <option>6</option>
+            </select>
+            <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
+            </div>
+
+           @* <div class="form-group">
+                <label asp-for="NumberOfPeople" class="control-label"></label>
+                <input asp-for="NumberOfPeople" class="form-control" />
+                <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">                
+                <label asp-for="ArrivalDate" class="control-label"></label>
+                <input type="datetime-local" asp-for="ArrivalDate" class="form-control">
+                <span asp-validation-for="ArrivalDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ArrivalTime" class="control-label"></label>
+                <input type="time" asp-for="ArrivalTime" class="form-control" />
+                <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DepartureDate" class="control-label"></label>
+                <input type="datetime-local" asp-for="DepartureDate" class="form-control">
+                <span asp-validation-for="DepartureDate" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+                <label asp-for="DepartureDate" class="control-label"></label>
+                <input asp-for="DepartureDate" class="form-control" />
+                <span asp-validation-for="DepartureDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="DepartureTime" class="control-label"></label>
+                <input type="time" asp-for="DepartureTime" class="form-control">
+                <span asp-validation-for="DepartureTime" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+                <label asp-for="DepartureTime" class="control-label"></label>
+                <input asp-for="DepartureTime" class="form-control" />
+                <span asp-validation-for="DepartureTime" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+ }

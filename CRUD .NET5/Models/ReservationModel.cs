@@ -21,7 +21,7 @@ namespace CRUD_.NET5.Models
         [NotMapped]
         public string ArrivalTime => ArrivalDateTime.ToString("hh:mm:tt");
         [NotMapped]
-        public string Departure => DepartureDateTime.ToString("mm/dd/yyyy");
+        public string DepartureDate => DepartureDateTime.ToString("mm/dd/yyyy");
         [NotMapped]
         public string DepartureTime => DepartureDateTime.ToString("hh:mm:tt");
     }
